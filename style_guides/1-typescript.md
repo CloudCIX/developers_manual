@@ -23,7 +23,7 @@ These will be added to the transpiled JavaScript, however.
 Indentation in TypeScript is to be 2 spaces.
 
 ### Taking Style Rules from Python 3 Style Guide
-When working in Typescript, you should also follow any rules in the Python 3 style guide that are applicable, for example [multi-line collections and functions](https://gitlab.cloudcix.com/Wiki/DeveloperManual/wikis/py3_style_guide#multi-line-functions-lists-dicts-etc)
+When working in Typescript, you should also follow any rules in the Python 3 style guide that are applicable, for example [multi-line collections and functions](https://github.com/CloudCIX/developers_manual/blob/main/style_guides/application_framework/style/1-python3.md#multi-line-functions--lists--dicts--etc)
 
 ## Config File
 Here is the `tslint.json` config file that we are currently using in all of the frontend projects currently using TypeScript;
