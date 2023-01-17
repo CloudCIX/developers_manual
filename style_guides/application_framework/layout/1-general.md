@@ -17,7 +17,7 @@ A *Method* relates to a HTTP method (`GET`, `POST`) and is used to interact with
 The *Methods* commonly used in CloudCIX SaaS are `list`, `create`, `read`, `update` and `delete`.
 
 When developing *Services*, we use Django's [Class Based Views](https://docs.djangoproject.com/en/2.0/topics/class-based-views/).
-We create two classes, a `Collection` class and a `Resource` class (more details in the [views](/layout/views) section).
+We create two classes, a `Collection` class and a `Resource` class (more details in the [views](https://github.com/CloudCIX/developers_manual/blob/main/style_guides/application_framework/layout/9.views.md) section).
 `Collections` contain methods that do not need an object id (`list`, `create`), and `Resources` contain methods that do (`read`, `update`, `delete`).
 When developing *Services*, please ensure that the layout of any file that references *Methods* stick to the order as they are described above; `list`, `create`, `read`, `update`, `delete`.
 
