@@ -29,6 +29,7 @@ class AddressSerializer(serpy.Serializer):
     address3 = serpy.Field()
     billing_address_id = serpy.Field()
     city = serpy.Field()
+    cloud_region = serpy.BoolField()
     country = CountrySerializer()
     currency = CurrencySerializer()
     email = serpy.Field()
@@ -46,16 +47,4 @@ class AddressSerializer(serpy.Serializer):
     uri = serpy.Field(attr='get_absolute_url', call=True)
     vat_number = serpy.Field()
     website = serpy.Field()
-
-    # Backwards Compatibility
-    idMember = serpy.Field(attr='member_id')
-    idCountry = serpy.Field(attr='country_id')
-    idSubdivision = serpy.Field(attr='subdivision_id')
-    idCurrency = serpy.Field(attr='currency_id')
-    idLanguage = serpy.Field(attr='language_id')
-    idAddressBilling = serpy.Field(attr='billing_address_id')
-    fullAddress = serpy.Field(attr='full_address')
-    idAddress = serpy.Field(attr='id')
-    companyName = serpy.Field(attr='name')
-    vatNumber = serpy.Field(attr='vat_number')
 ```

@@ -1,7 +1,10 @@
 # Errors
-As part of removing the dependency on Repository by making `docgen`, I believe it's worth our while bringing error messages into the individual applications as well.
 
-The current thought is a structure as follows (using Membership as an example);
+Error messages are defined in the individual applications.
+
+Each service will have it's own errors/file.py where file is the name of the service. 
+
+The a structure is as follows (using Membership as an example);
 ```
 errors/
     __init__.py
@@ -19,6 +22,9 @@ membership_address_create_002 = 'The "member_id" parameter is invalid. "member_i
 ```
 
 The error codes should be grouped together by method and follow the same order as everything else; `list` -> `create` -> `read` -> `update` -> `delete`
+
+The patten for naming error codes is "application_name"_"service_name"_"method"_XXX
+
 
 ## Use Of Error Codes
 When using error codes, we will use the name of the variable in place of an error code, and the response handler will import that variable from the `errors` package to get a message for it.

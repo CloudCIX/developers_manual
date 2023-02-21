@@ -10,14 +10,14 @@ Will require a lot of revisions as we go through the creation of Membership in P
 - [Rules](#rules)
     - [Quotes](#quotes)
     - [Names](#names)
-    - [Multi-line stuff](#multi-line-functions-lists-dicts-etc)
+    - [Multi-line stuff](#multi-line-functions--lists--dicts--etc)
     - [`__all__`](#__all__)
     - [Type Hinting](#type-hinting)
     - [Import Order](#import-order)
     - [Collection Literals](#collection-literals)
 
 # Linting
-We have a [lint image](https://gitlab.cloudcix.com/Utils/CI/tree/master/lint) that is used for linting Python3 repositories.
+We have a [lint image](https://hub.docker.com/r/cloudcix/lint) that is used for linting Python3 repositories.
 
 This image is to make it so that we have a single point of recording what lint packages are currently being used
 
