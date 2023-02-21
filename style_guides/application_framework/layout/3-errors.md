@@ -23,7 +23,7 @@ membership_address_create_002 = 'The "member_id" parameter is invalid. "member_i
 
 The error codes should be grouped together by method and follow the same order as everything else; `list` -> `create` -> `read` -> `update` -> `delete`
 
-The patten for naming error codes is "application_name"_"service_name"_"method"_XXX
+The patten for naming error codes is application_service_method_XXX
 
 
 ## Use Of Error Codes
