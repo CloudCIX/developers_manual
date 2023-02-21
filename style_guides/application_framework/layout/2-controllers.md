@@ -30,7 +30,6 @@ The Controller Meta class should be a subclass of `cloudcix_rest.controllers.Con
 
 The metadata fields and their purpose are as follows;
 - `allowed_ordering`: A tuple of strings representing the fields that can be used to sort the data in a list. Used for `list` controllers.
-- `error_class`: A string containing the first four triplets of the error codes used in the controller. This will be used to get the error messages for any errors that occur. Used for all controllers.
 - `max_list_limit`: The maximum limit that can be specified. Numbers higher than this will be replaced with the default. Used for `list` controllers.
 - `model`: The model class that is used to create new instances. Used for `create` controllers.
 - `normal_list_limit`: The default limit for the number of objects that will be returned in a list call, if the user has either not specified or specified an invalid number. Used for `list` controllers.

@@ -32,71 +32,78 @@ class Permissions:
     @staticmethod
     def create(request: Request, member: Member) -> Optional[Http403]:
         """
-        Check that a given request to create an Address record is valid
-        Valid if:
-            - The user's member is self managed
-            - Is for the users menber or a non self managed partner
-        :param request: The request object representing the user's request
-        :param member: The member object the Address is associated with
+        The request to create an Address is valid if;
+        - The requesting User's Member is self-managed
+        - The request is creating an Address in either the User's Member or a non self-managed partner Member
         """
-        # The user's member is self managed
+        # The requesting User's Member is self-managed
         if not request.user.member['self_managed']:
-            return Http403(error_code='010-114-002-001-026')
-        # Is for the users menber or a non self managed partner
+            return Http403(error_code='membership_address_create_201')
+
+        # The request is creating an Address in either the User's Member or a non self-managed partner Member
         if request.user.member['id'] != member.pk and member.self_managed:
-            return Http403(error_code='010-114-002-001-033')
+            return Http403(error_code='membership_address_create_202')
 
         return None
 
     @staticmethod
     def read(request: Request, obj: Address) -> Optional[Http403]:
         """
-        Check that a given request to read an Address record is valid
-        Valid if:
-            - The user is persoa
-            - The user's address is linked to the address object
-        :param request: The request object representing the user's request
-        :param obj: The Address that is trying to be read
+        The request to read an Address is valid if;
+        - The requesting User's Address is linked to the Address being read
         """
+        # API User Allowance
         if request.user.id == 1:  # pragma: no cover
             return None
-        # The user's address is linked to the address object
+
+        # The requesting User's Address is linked to the Address being read
         try:
             AddressLink.objects.get(
                 address_id=request.user.address['id'],
                 contra_address=obj.id,
             )
         except AddressLink.DoesNotExist:
-            return Http403(error_code='010-114-002-003-003')
-        
-       return None
+            return Http403(error_code='membership_address_read_201')
+
+        return None
 
     @staticmethod
-    def update(request: Request, obj: Address) -> Optional[Http403]:
+    def update(
+        request: Request,
+        obj: Address,
+        current_cloud_region: bool,
+        new_cloud_region: bool,
+    ) -> Optional[Http403]:
         """
-        Check that a given request to update an Address record is valid.
-        Valid if:
-            - The user's member is self managed
-            - The user is updating an address in their own member
-            - The user is updating an address in a non self managed partner
-            - There is a link between the address and the user's address
-        :param request: The request object representing the sent request
-        :param obj: The Address record trying to be updated
+        The request to update an Address is valid if;
+        - The requesting User's Member is self-managed
+        - The requesting User is updating an Address in their own Member or the requesting User is updating an Address
+            in a non self-managed partner Member
+        - There is a link between the Address being updated and the requesting User's Address
         """
-        # The user's member is self managed
+        if request.user.id == 1:  # pragma: no cover
+            return None
+
+        if current_cloud_region != new_cloud_region:
+            return Http403(error_code='membership_address_update_201')
+
+        # The requesting User's Member is self-managed
         if not request.user.member['self_managed']:
-            return Http403(error_code='010-114-002-004-006')
-        # The user is updating an address in their own member or an address in a non self managed partner
+            return Http403(error_code='membership_address_update_202')
+
+        # The requesting User is updating an Address in their own Member the requesting User is updating an Address in
+        # a non self-managed partner Member
         if request.user.member['id'] != obj.member.pk and obj.member.self_managed:
-            return Http403(error_code='010-114-002-004-007')
-        # There is a link between the address and the user's address
+            return Http403(error_code='membership_address_update_203')
+
+        # There is a link between the Address being updated and the requesting User's Address
         try:
             AddressLink.objects.get(
                 address_id=request.user.address['id'],
                 contra_address=obj,
             )
         except AddressLink.DoesNotExist:
-            return Http403(error_code='010-114-002-004-030')
+            return Http403(error_code='membership_address_update_204')
 
         return None
 ```
