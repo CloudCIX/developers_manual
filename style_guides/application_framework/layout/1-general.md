@@ -1,20 +1,21 @@
 # General Application Structuring
 
 ## Applications
-An *Application* is what we in CIX call one of our API systems.
+An *Application* is what we in CloudCIX call a backen that exposes an API.
 Each *Application* represents a set of functionality powered by a REST API.
-Examples of *Applications* include *Membership*, *IAAS*, OTP etc.
+Examples of *Applications* include *Membership*, *IAAS*, *OTP* etc.
 
 ## Services
-The *Applications* are made up of multiple *Services*.
+Each *Application* has multiple *Services*.
 A *Service* is a set of *Methods* that are used to interact with a single type of model.
 Typically, each model in an *Application* will have a *Service* associated with it.
 Examples of *Services* include `Membership.user`, `IAAS.project`, etc
 
 ## Methods
-*Services* are themselves made up of *Methods*.
+*Services* is turn support *Methods*.
 A *Method* relates to a HTTP method (`GET`, `POST`) and is used to interact with the *Service* model in different ways.
-The *Methods* commonly used in CloudCIX SaaS are `list`, `create`, `read`, `update` and `delete`.
+The *Methods* commonly used in CloudCIX SaaS are `list`, `create`, `read`, `update`, and `delete` and we sometimes refer to them collectively as CRUDL
+methods.
 
 When developing *Services*, we use Django's [Class Based Views](https://docs.djangoproject.com/en/2.0/topics/class-based-views/).
 We create two classes, a `Collection` class and a `Resource` class (more details in the [views](https://github.com/CloudCIX/developers_manual/blob/main/style_guides/application_framework/layout/9.views.md) section).
@@ -38,7 +39,7 @@ The requirements files are laid out below, using the typical paths within the Do
     - Can be left empty, but the file should exist just to maintain patterns
 
 ## Settings
-Every application will likely have its own extra settings that it needs, and these settings will likely differ between environments also.s;
+Every application will likely have its own extra settings that it needs, and these settings will likely differ between environments also.;
 
 - `ALLOWED_HOSTS`: A tuple of strings representing the hostnames that the server should accept as allowed. If accessed through a different hostname, all responses will be 400s.
 - `CACHES`: A dictionary mapping cache names to locations. We only use the `default` cache for now, and in the test environment it should be a dummy cache
