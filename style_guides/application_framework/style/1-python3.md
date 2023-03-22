@@ -162,3 +162,30 @@ d = {
     'y': 2,
 }
 ```
+
+# Run Locally 
+
+## Requirements
+- importlib-metadata<5.0
+- flake8<4.0.0
+- flake8-quotes 
+- pep8-naming 
+- flake8-commas
+- mypy<0.800
+
+## .flake8
+In the top level of the application directory save the following in a file named .flake8
+
+```
+[flake8]
+inline-quotes = single
+multiline-quotes = double
+ignore = C814, W503, W504
+max-line-length = 120
+exclude = errors/__init__.py
+```
+Run `flake8` to get lint report
+
+## mypy
+
+Run `mypy --ignore-missing-imports controllers errors migrations models permissions serializers tests views db_router.py` to get mypy report for the application. 
