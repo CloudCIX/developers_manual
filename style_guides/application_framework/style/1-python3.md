@@ -163,7 +163,7 @@ d = {
 }
 ```
 
-# Run Locally 
+# Local Reports
 
 ## Requirements
 - importlib-metadata<5.0
