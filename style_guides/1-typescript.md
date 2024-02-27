@@ -25,6 +25,14 @@ TypeScript indentation of 2 spaces is used.
 ### Taking Style Rules from Python 3 Style Guide
 When working in Typescript, you should also follow any rules in the Python 3 style guide that are applicable, for example [multi-line collections and functions](https://github.com/CloudCIX/developers_manual/blob/main/style_guides/application_framework/style/1-python3.md#multi-line-functions--lists--dicts--etc)
 
+### Debug consol log statements
+Without the comment before the console.log statement, the logs will not be outputted during testing.
+
+```typescript
+// eslint-disable-next-line no-console
+console.log("Debug messages");
+```
+
 ## Config File
 Here is the `tslint.json` config file that we are use in all frontend projects, using TypeScript;
 
@@ -79,3 +87,5 @@ Here is the `tslint.json` config file that we are use in all frontend projects, 
 ```
 
 You can simply copy paste this into the typescript directory as `tslint.conf`.
+
+
